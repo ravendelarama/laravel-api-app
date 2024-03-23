@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PogiController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::controller(PogiController::class)->group(function () {
-    Route::prefix('/pogi')->group(function () {
+    Route::prefix('/users')->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
         Route::patch('/edit', 'edit');
@@ -30,18 +31,18 @@ Route::controller(PogiController::class)->group(function () {
     });
 });
 
-Route::match(['get', 'post'], '/etat/{etat?}', function (Request $request, String $etat = 'Jireh') {
-    return "Mukha kang etat " . $etat;
-});
+Route::match(['get', 'post'], '/user/{user}', function (Request $request, String $user) {
+    return "Mukha kang etat " . $user;
+})->name('profile');
 
 //  HTTP Verb Exceptions
-Route::match(['patch', 'put', 'delete'], '/mutate', function (Request $request) {
-    return $request->json([
+Route::match(['post', 'patch', 'put', 'delete'], '/mutate', function (Request $request) {
+    return Response::json([
         'message' => "Data Mutated"
     ]);
 });
 
 // Any
 Route::any('/any', function (Request $request) {
-    return "Kahit ano basta kung san ka masaya";
+    return "any";
 });

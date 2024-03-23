@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class PogiController extends Controller
 {
@@ -11,9 +12,9 @@ class PogiController extends Controller
      */
     public function index(Request $request)
     {
-        return $request->json([
+        return Response::json([
             'status' => 200,
-            'message' => 'Pogi mo ' . $request->pogi,
+            'message' => 'Pogi mo ' . $request->user,
         ]);
     }
 
@@ -30,7 +31,7 @@ class PogiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "Store";
     }
 
     /**

@@ -22,12 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(PogiController::class)->prefix('users')->group(function () {
-        Route::get('/', 'index');
-        Route::post('/', 'store');
-        Route::patch('/edit', 'edit');
-        Route::put('/', 'update');
-        Route::delete('/', 'destroy');
-    });
+    Route::get('/', 'index');
+    Route::post('/', 'store');
+    Route::patch('/edit', 'edit');
+    Route::put('/', 'update');
+    Route::delete('/', 'destroy');
 });
 
 Route::match(['get', 'post'], '/user/{user}', function (Request $request, String $user) {

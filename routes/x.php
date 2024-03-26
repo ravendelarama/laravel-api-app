@@ -21,8 +21,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::controller(PogiController::class)->group(function () {
-    Route::prefix('/users')->group(function () {
+Route::controller(PogiController::class)->prefix('/users')->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
         Route::patch('/edit', 'edit');
